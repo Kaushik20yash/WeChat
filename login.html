@@ -28,8 +28,8 @@
         />
       </div>
       <div>
-        <button class="btn" id="btnn" >
-          <a href="mainProfile.html" style="text-decoration: none;color:rgb(153, 94, 248)";>
+        <button class="btn" id="btnn" onclick="signbtn()">
+          <a href="javascript:delay('mainProfile.html')" style="text-decoration: none;color:rgb(153, 94, 248)";>
           <span class="box"> sign-in!</span>
           </a>
         </button>
@@ -37,7 +37,15 @@
       <div class="footer">
         <p>Don't have an account? <a href="#">Sign up</a></p>
       </div>
+<div class="lds-ellipsis"><div></div><div></div><div></div></div>
     </div>
-    
+    <script>
+      function signbtn(){
+        document.getElementsByClassName('lds-ellipsis')[0].style.display='inline-block';
+      }
+      function delay (URL) {
+    setTimeout( function() { window.location = URL }, 1500 );
+}
+    </script>
   </body>
 </html>
