@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5em;
+            height: 3.5em;
+            align-items: center;
+            border-bottom: 1px solid lightgrey;
+        }
+        nav #app {
+            display: flex;
+            height: 2.4em;
+            align-items: center;
+            gap: 0.2em;
+        }
+        #logo {
+            border-radius: 50%; 
+            /* border: 1px solid black; */
+            width: 3.4em;
+            height: 3.4em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #logo img {
+            object-fit: contain;
+            width: 3em;
+            height: 3em;
+        }
+        #pro-icon {
+            font-size: 1.2em;
+            padding: 0.2em;
+            width: 1.6em;
+            border-radius: 50%; 
+            background-color: rgb(228, 57, 228); 
+            display: flex;
+            justify-content: center;
+            height: 1.6em;
+            align-items: center;
+            color: white;
+        }
+        #top {
+            display: flex;
+            gap: 1.5em;
+        }
+        #profile {
+            display: flex;
+            gap: 0.5em;
+            height: 2.4em;
+            align-items: center;
+        }
+        #theme {
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.1em;
+            width: 2.3em;
+            height: 2.3em;
+            background-color: rgb(213, 203, 203);
+        }
+        #main-content {
+            display: flex;
+        }
+        #sidebar {
+            border-right: 0.5px solid lightgrey;
+            width: 20%;
+            height: auto;
+            padding-top: 1em;
+        }
+        .items {
+            font-size: 1.5em;
+            padding: 1em;
+        }
+        .items label a {
+            color: black;
+        }
+        .items.active {
+            background:linear-gradient(to left,rgba(0, 0, 255, 0.574),grey);
+            border-radius: 0.5em;
+            color: white;
+        }
+        .items.active a{
+            color: white;
+        }
+        #dashboard {
+            padding: 1em;
+            width: 100%;
+        }
+        #header {
+            width: 100%;
+            padding: 0.5em;
+            display: flex;
+            height: 2em;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #chats {
+            padding: 1em;
+            width: 35%;
+            height: 800px;
+            box-shadow: 0px 0px 4px lightgrey;
+            border-radius: 1em;
+            margin: 0em;
+        }
+        .online {
+            width: 65%;
+        }
+        .messages {
+            padding: 0.5em;
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            margin: 1em;
+        }
+        .message-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .time {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .num {
+            font-size: 1em;
+            padding: 0.2em;
+            width: 1.4em;
+            border-radius: 50%; 
+            background-color: rgb(197, 233, 249); 
+            display: flex;
+            justify-content: center;
+            height: 1.4em;
+            align-items: center;
+            color: rgb(99, 203, 248);
+            border: 0.5px solid rgb(99, 203, 248);
+        }
+        .online i {
+            font-size: 50px;
+            padding: 0.2em;
+            height: 1.4em;
+            width: 1.4em;
+            border-radius: 50%; 
+            background-color: rgb(57, 165, 228); 
+            display: flex;
+            border-radius:50%;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .online {
+            box-shadow: 0px 0px 4px lightgrey;
+            border-radius: 1em;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            flex-direction: column;
+            margin-left: 1%;
+            padding: 1.5em;
+        }
+        .dynamic-messages {
+            width: 65%;
+            box-shadow: 0px 0px 4px lightgrey;
+            border-radius: 1em;
+            font-size: 1.2em;
+            display: none;
+            flex-direction: column;
+            box-sizing: border-box;
+            height: 830px;
+        }
+        #container1 {
+            display: flex;
+            justify-content: space-around;
+            width: 95%;
+            padding: 2em;
+            gap: 1em;
+        }
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: lightgrey;
+            border-radius: 0.5em;
+            padding: 0.5em;
+        }
+        .box h2 {
+            color: green;
+        }
+        .container2 {
+            width: 60%;
+        }
+        .sms {
+            font-size: 2em;
+            padding: 0.4em;
+            width: 1.6em;
+            height: 1.6em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(119, 16, 179);
+            color: white;
+            border-radius: 50%;
+            align-self: flex-end;
+            justify-self: flex-end;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div id="app">
+            <div id="logo"><img src="./WeChatLogo.png"/></div>
+            <h2>WeChat</h2>
+        </div>
+        <div>
+          <input
+            type="text"
+            id="search"
+            placeholder="&#xf3eb; Search Messages, Contacts..."
+            style="font-family:Arial,FontAwesome; width: 40ch; font-size: 1em; border-radius: 1.2em; padding: 0.4em;"
+          />
+        </div>
+        <div id="top">
+            <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="window.location.href='./darkMode.html'"></i></div>
+            <div id="profile">
+                <div id="pro-icon">YK</div>
+                <h2>Yash Kaushik</h2>
+            </div>
+        </div>
+      </nav>
+        <div id="main-content">
+            <div id="sidebar">
+                <div class="items">
+                    <i class="fa-solid fa-house"></i>
+                    <label><a href="mainProfile.html" style="text-decoration: none;">Dashboard</a></label>
+                </div>
+                <div class="items active">
+                    <i class="fa-solid fa-message"></i>
+                    <label><a href="Profile.html" style="text-decoration: none;">Chats</a></label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-address-book"></i>
+                    <label>Contacts</label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-camera"></i>
+                    <label><a href="Story.html" style="text-decoration: none;">Stories</a></label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-gear"></i>
+                    <label><a href="Settings.html" style="text-decoration: none;">Settings</a></label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-user"></i>
+                    <label><a href="Profile.html" style="text-decoration: none;">Profile</a></label>
+                </div>
+            </div>
+            <div id="dashboard">
+                <div id="header">
+                    <h1>Chats</h1>
+                    
+                </div>
+                <div id="container1">
+                    <div id="chats">
+                        <div class="messages" type="button" style="cursor: pointer;">
+                            <div id="pro-icon">AC</div>
+                            <div class="message-text">
+                                <p>Alex Chen</p>
+                                <p>Hey! Are we still on for the meeting tomorrow?</p>
+                            </div>
+                            <div class="time">
+                                <p>2:30 PM</p>
+                                <div class="num">2</div>
+                            </div>
+                        </div>
+                        <div class="messages" type="button" style="cursor: pointer;">
+                            <div id="pro-icon">SW</div>
+                            <div class="message-text">
+                                <p>Sarah Wilsoon</p>
+                                <p>Thanks for sending those files!</p>
+                            </div>
+                            <div class="time">
+                                <p>1:45 PM</p>
+                            </div>
+                        </div>
+                        <div class="messages" type="button" style="cursor: pointer;">
+                            <div id="pro-icon">MJ</div>
+                            <div class="message-text">
+                                <p>Marcus Johnson</p>
+                                <p>The project looks great so far</p>
+                            </div>
+                            <div class="time">
+                                <p>12:20 PM</p>
+                                <div class="num">1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="online">
+                        <i class="fa fa-commenting" aria-hidden="true"></i>
+                        <h2>Select a chat to start messaging</h2>
+                        <p>Choose from your existing conversations or start a new one</p>
+                    </div>
+                    <div class="dynamic-messages">
+
+                    </div>
+            </div>
+            <div class="sms" type="button">
+                <div class="send-message">
+                    <a href="Chats.html" style="text-decoration: none;color:white">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="chats.js"></script>
+  </body>
+</html>

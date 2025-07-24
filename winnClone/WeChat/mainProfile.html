@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5em;
+            height: 3.5em;
+            align-items: center;
+            border-bottom: 1px solid lightgrey;
+        }
+        nav #app {
+            display: flex;
+            height: 2.4em;
+            align-items: center;
+            gap: 0.2em;
+        }
+        #logo, #pro-icon {
+            font-size: 1.2em;
+            padding: 0.2em;
+            width: 1.6em;
+            border-radius: 50%; 
+            background-color: rgb(228, 57, 228); 
+            display: flex;
+            justify-content: center;
+            height: 1.6em;
+            align-items: center;
+            color: white;
+        }
+        #top {
+            display: flex;
+            gap: 1.5em;
+        }
+        #profile {
+            display: flex;
+            gap: 0.5em;
+            height: 2.4em;
+            align-items: center;
+        }
+        #theme {
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.1em;
+            width: 2.3em;
+            height: 2.3em;
+            background-color: rgb(213, 203, 203);
+        }
+        #main-content {
+            display: flex;
+        }
+        #sidebar {
+            border-right: 0.5px solid lightgrey;
+            width: 20%;
+            height: 100vh;
+            padding-top: 1em;
+        }
+        .items {
+            font-size: 1.5em;
+            padding: 1em;
+        }
+        .items.active {
+            background:linear-gradient(to left,rgba(0, 0, 255, 0.574),grey);
+        }
+        #dashboard {
+            padding: 1em;
+            width: 100%;
+        }
+        #header {
+            width: 100%;
+            padding: 0.5em;
+            display: flex;
+            height: 2em;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #chats {
+            padding: 1.5em;
+            width: 60%;
+            box-shadow: 0px 0px 4px lightgrey;
+            border-radius: 1em;
+            margin: 1em;
+        }
+        .messages {
+            padding: 0.5em;
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            margin: 1em;
+        }
+        .message-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .time {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .num {
+            font-size: 1em;
+            padding: 0.2em;
+            width: 1.4em;
+            border-radius: 50%; 
+            background-color: rgb(197, 233, 249); 
+            display: flex;
+            justify-content: center;
+            height: 1.4em;
+            align-items: center;
+            color: rgb(99, 203, 248);
+            border: 0.5px solid rgb(99, 203, 248);
+        }
+        #online-icon {
+            font-size: 1.2em;
+            padding: 0.2em;
+            width: 1.6em;
+            border-radius: 50%; 
+            background-color: rgb(57, 165, 228); 
+            display: flex;
+            justify-content: center;
+            height: 1.6em;
+            align-items: center;
+            color: white;
+        }
+        .online {
+            box-shadow: 0px 0px 4px lightgrey;
+            width: 40%;
+            border-radius: 1em;
+            margin: 1em;
+            padding: 1.5em;
+        }
+        #container1 {
+            display: flex;
+        }
+        .user-online {
+            display: flex;
+            gap: 1em;
+            margin: 1em;
+            align-items: center;
+            position: relative;
+        }
+        .green-dot {
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            background-color: green;
+            position: absolute;
+            right: 3em;
+        }
+        .stats-content {
+            width: 88.6%;
+            box-shadow: 0px 0px 4px lightgrey;
+            border-radius: 1em;
+            padding: 1.5em;
+            margin: 1em;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1em;
+        }
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: lightgrey;
+            border-radius: 0.5em;
+            padding: 0.5em;
+        }
+        .box h2 {
+            color: green;
+        }
+        .container2 {
+            width: 60%;
+        }
+        .sms {
+            font-size: 2em;
+            padding: 0.4em;
+            width: 1.6em;
+            height: 1.6em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(119, 16, 179);
+            color: white;
+            border-radius: 50%;
+            align-self: flex-end;
+            justify-self: flex-end;
+            margin: 2em;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div id="app">
+            <div id="logo">WC</div>
+            <h2>WeChat</h2>
+        </div>
+        <div>
+          <input
+            type="text"
+            id="search"
+            placeholder="&#xf002; Search Messages, Contacts..."
+            style="font-family:Arial,FontAwesome; width: 40ch; font-size: 1em; border-radius: 1.2em; padding: 0.4em;"
+          />
+        </div>
+        <div id="top">
+            <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="window.location.href='./darkMode.html'"></i></div>
+            <div id="profile">
+                <div id="pro-icon">YK</div>
+                <h2>Yash Kaushik</h2>
+            </div>
+        </div>
+      </nav>
+        <div id="main-content">
+            <div id="sidebar">
+                <div class="items active">
+                    <i class="fa-solid fa-house"></i>
+                    <label>Dashboard</label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-message"></i>
+                    <label><a href="Chats.html" style="text-decoration: none;color:black">Chats</a></label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-address-book"></i>
+                    <label>Contacts</label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-camera"></i>
+                    <label><a href="Story.html" style="text-decoration: none;color:black">Stories</a></label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-gear"></i>
+                    <label><a href="Settings.html"style="text-decoration: none;color:black">Settings</a></label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-user"></i>
+                    <label><a href="Profile.html"style="text-decoration: none;color:black">Profile</a></label>
+                </div>
+            </div>
+            <div id="dashboard">
+                <div id="header">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back, John! You have 3 unread messages.</p>
+                </div>
+                <div id="container1">
+                    <div id="chats">
+                        <h3>Recent Chats</h3>
+                        <div class="messages">
+                            <div id="pro-icon">AC</div>
+                            <div class="message-text">
+                                <p>Alex Chen</p>
+                                <p>Hey! Are we still on for the meeting tomorrow?</p>
+                            </div>
+                            <div class="time">
+                                <p>2:30 PM</p>
+                                <div class="num">2</div>
+                            </div>
+                        </div>
+                        <div class="messages">
+                            <div id="pro-icon">SW</div>
+                            <div class="message-text">
+                                <p>Sarah Wilsoon</p>
+                                <p>Hey! Are we still on for the meeting tomorrow?</p>
+                            </div>
+                            <div class="time">
+                                <p>1:45 PM</p>
+                            </div>
+                        </div>
+                        <div class="messages">
+                            <div id="pro-icon">MJ</div>
+                            <div class="message-text">
+                                <p>Marcus Johnson</p>
+                                <p>Hey! Are we still on for the meeting tomorrow?</p>
+                            </div>
+                            <div class="time">
+                                <p>12:20 PM</p>
+                                <div class="num">1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="online">
+                        <h3>Online Users</h3>
+                        <div class="user-online">
+                            <div id="online-icon">AC</div>
+                            <p>Alex Chen</p>
+                            <div class="green-dot"></div>
+                        </div>
+                        <div class="user-online">
+                            <div id="online-icon">MJ</div>
+                            <p>Marcus Johnson</p>
+                            <div class="green-dot"></div>
+                        </div>
+                        <div class="user-online">
+                            <div id="online-icon">RM</div>
+                            <p>Ryan Martinez</p>
+                            <div class="green-dot"></div>
+                        </div>
+                    </div>
+            </div>
+            <div class="container2">
+                <div class="stats-content">
+                    <h3>Quick Stats</h3>
+                    <div class="stats">
+                        <div class="box">
+                            <h2>15</h2>
+                            <p>Total Chats</p>
+                        </div>
+                        <div class="box">
+                            <h2>3</h2>
+                            <p>Unread</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sms" type="button">
+                <div class="send-message">
+                    <a href="Chats.html" style="text-decoration: none;color:white">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
