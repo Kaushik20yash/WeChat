@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile-logo">
+        <img src="profile-logo.png" alt="logo" />
+      </div>
+      <div class="desc">
+        <p id="main">We Chat</p>
+        <p>Connect beyond boundaries</p>
+      </div>
+      <div class="input-email">
+        <input type="email" required placeholder="Email address" />
+      </div>
+      <div class="input-email">
+        <input
+          type="password"
+          required
+          placeholder="password"
+          name="password"
+          id="pass"
+        />
+      </div>
+      <div>
+        <button class="btn" id="btnn" onclick="signbtn()">
+          <a href="javascript:delay('mainProfile.html')" style="text-decoration: none;color:rgb(153, 94, 248)";>
+          <span class="box"> sign-in!</span>
+          </a>
+        </button>
+      </div>
+      <div class="footer">
+        <p>Don't have an account? <a href="#">Sign up</a></p>
+      </div>
+<div class="lds-ellipsis"><div></div><div></div><div></div></div>
+    </div>
+    <script>
+      function signbtn(){
+        document.getElementsByClassName('lds-ellipsis')[0].style.display='inline-block';
+      }
+      function delay (URL) {
+    setTimeout( function() { window.location = URL }, 1500 );
+}
+    </script>
+  </body>
+</html>

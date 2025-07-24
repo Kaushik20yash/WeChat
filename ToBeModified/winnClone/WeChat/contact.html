@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5em;
+            height: 3.5em;
+            align-items: center;
+            border-bottom: 1px solid lightgrey;
+        }
+        nav #app {
+            display: flex;
+            height: 2.4em;
+            align-items: center;
+            gap: 0.2em;
+        }
+        #logo, #pro-icon {
+            font-size: 1.2em;
+            padding: 0.2em;
+            width: 1.6em;
+            border-radius: 50%; 
+            background-color: rgb(228, 57, 228); 
+            display: flex;
+            justify-content: center;
+            height: 1.6em;
+            align-items: center;
+            color: white;
+        }
+        #top {
+            display: flex;
+            gap: 1.5em;
+        }
+        #profile {
+            display: flex;
+            gap: 0.5em;
+            height: 2.4em;
+            align-items: center;
+        }
+        #theme {
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.1em;
+            width: 2.3em;
+            height: 2.3em;
+            background-color: rgb(213, 203, 203);
+        }
+        #main-content {
+            display: flex;
+        }
+        #sidebar {
+            border-right: 0.5px solid lightgrey;
+            width: 20%;
+            height: 100vh;
+            padding-top: 1em;
+        }
+        .items {
+            font-size: 1.5em;
+            padding: 1em;
+        }
+        .items.active {
+            background-color: rgb(64, 221, 64);
+        }
+        #contact {
+            padding: 1em;
+            width: 100%;
+        }
+        .container2 {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+        }
+        #btn {
+            background-color: rgb(20, 105, 224);
+            color: white;
+            padding: 0.5em;
+            font-size: 1.2em;
+            border-radius: 0.5em;
+        }
+        #formm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: auto;
+            width: 40%;
+            box-shadow: 0px 0px 5px lightgrey;
+            padding: 1em;
+            padding-bottom: 0.6em;
+            gap: 0.2em;
+        }
+        .container2 {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1em;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div id="app">
+            <div id="logo">WC</div>
+            <h2>WeChat</h2>
+        </div>
+        <div>
+          <input
+            type="text"
+            id="search"
+            placeholder="&#xf002; Search Messages, Contacts..."
+            style="font-family:Arial,FontAwesome; width: 40ch; font-size: 1em; border-radius: 1.2em; padding: 0.4em;"
+          />
+        </div>
+        <div id="top">
+            <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="window.location.href='./darkMode.html'"></i></div>
+            <div id="profile">
+                <div id="pro-icon">YK</div>
+                <h2>Yash Kaushik</h2>
+            </div>
+        </div>
+      </nav>
+        <div id="main-content">
+            <div id="sidebar">
+                <div class="items active">
+                    <i class="fa-solid fa-house"></i>
+                    <label>Dashboard</label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-message"></i>
+                    <label>Chats</label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-address-book"></i>
+                    <label>Contacts</label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-gear"></i>
+                    <label>Settings</label>
+                </div>
+                <div class="items">
+                    <i class="fa-solid fa-user"></i>
+                    <label>Profile</label>
+                </div>
+            </div>
+            <div id="contact">
+                <div class="header">
+                    <h1>Contacts</h1>
+                    <button id="btn">+Add Contact</button>
+                </div>
+                <div id="formm">
+                    <div>
+                    <label>Name: </label>
+                    <input type="text" id="name" style="width: 50ch;"/>
+                    </div>
+                    <div>
+                    <label>Email: </label>
+                    <input type="email" id="email" style="width: 50ch;"/>
+                    </div>
+                    <button type="button" id="button" style="width: 5ch; margin: 0.4em auto;">Save</button>
+                </div>
+                <div class="container2">
+
+                </div>
+                </div>    
+            </div>
+        </div>
+    <script src="contact.js"></script>
+  </body>
+</html>
