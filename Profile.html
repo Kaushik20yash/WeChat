@@ -224,7 +224,34 @@
                     </a>
                 </div>
             </div>
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 2em;">
+              <button id="logoutBtn" style="padding: 3%; width: 3.5em; height: 3.5em; margin: 2%; border-radius:0.3em; background:linear-gradient(to right,#e339e4,#e339e4,white); display: flex; align-items: center; justify-content: center; border: none; cursor: pointer;">
+                <i class="fa-solid fa-power-off" style="font-size: 1.5em; color: white;"></i>
+              </button>
+            </div>
         </div>
     </div>
   </body>
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js';
+    import { getAuth, signOut } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js';
+    const firebaseConfig = {
+      apiKey: "AIzaSyANSDmcguL6crzdK-DUUPjToFMM6f2S354",
+      authDomain: "wechat-793d7.firebaseapp.com",
+      projectId: "wechat-793d7",
+      storageBucket: "wechat-793d7.firebasestorage.app",
+      messagingSenderId: "696924137970",
+      appId: "1:696924137970:web:da6546fcff1fefe4f1636b"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    document.getElementById('logoutBtn').onclick = function() {
+      signOut(auth).then(() => {
+        window.location.href = 'login.html';
+      }).catch((error) => {
+        alert('Logout failed: ' + error.message);
+      });
+    };
+  </script>
 </html>

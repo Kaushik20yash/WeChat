@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -20,12 +20,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
 // ✅ Sign-Up (Register) User
 document.getElementById('btnn1').addEventListener("click", function (event) {
     event.preventDefault();
-
+    document.getElementsByClassName('lds-ellipsis')[0].style.display = 'inline-block';
+    // Store the entered name in localStorage
+    var name = document.getElementById('usernameInput').value;
+    localStorage.setItem('wechat_username', name);
     const email1 = document.getElementById('email1').value.trim();
     const password1 = document.getElementById('password1').value.trim();
 
     if (!email1 || !password1) {
         alert("Please enter both email and password.");
+        document.getElementsByClassName('lds-ellipsis')[0].style.display = 'none';
         return;
     }
 
@@ -38,18 +42,23 @@ document.getElementById('btnn1').addEventListener("click", function (event) {
         .catch((error) => {
             console.error("Error:", error);
             alert(error.message);
+            document.getElementsByClassName('lds-ellipsis')[0].style.display = 'none';
         });
 });
 
 // ✅ Sign-In User
 document.getElementById('btnn').addEventListener("click", function (event) {
     event.preventDefault();
-
+    document.getElementsByClassName('lds-ellipsis')[0].style.display = 'inline-block';
+    // Store the entered name in localStorage
+    var name = document.getElementById('usernameInput').value;
+    localStorage.setItem('wechat_username', name);
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
 
     if (!email || !password) {
         alert("Please enter both email and password.");
+        document.getElementsByClassName('lds-ellipsis')[0].style.display = 'none';
         return;
     }
 
@@ -62,6 +71,7 @@ document.getElementById('btnn').addEventListener("click", function (event) {
         .catch((error) => {
             console.error("Error:", error);
             alert(error.message);
+            document.getElementsByClassName('lds-ellipsis')[0].style.display = 'none';
         });
 });
 
@@ -72,6 +82,7 @@ onAuthStateChanged(auth, (user) => {
         window.location.href = "mainProfile.html";  // Redirect if already logged in
     }
 });
+
 
 //   const email = document.getElementById('email').value;
 //   const password = document.getElementById('password').value;

@@ -217,4 +217,68 @@
         </div>
     </div>
   </body>
+  <style>
+    #logoutBtnSettings {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 2em;
+      width: 3.5em;
+      height: 3.5em;
+      border-radius: 50%;
+      background: #e33939;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      cursor: pointer;
+      z-index: 1000;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 0;
+      transition: background 0.2s;
+    }
+    #logoutBtnSettings i {
+      color: #fff;
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+    #logoutBtnSettings span {
+      display: none;
+    }
+    #logoutBtnSettings:active {
+      background: #b71c1c;
+    }
+  </style>
+  <button id="logoutBtnSettings" title="Logout">
+    <i class="fa-solid fa-power-off"></i>
+    <span>Logout</span>
+  </button>
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js';
+    import { getAuth, signOut } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js';
+    const firebaseConfig = {
+      apiKey: "AIzaSyANSDmcguL6crzdK-DUUPjToFMM6f2S354",
+      authDomain: "wechat-793d7.firebaseapp.com",
+      projectId: "wechat-793d7",
+      storageBucket: "wechat-793d7.firebasestorage.app",
+      messagingSenderId: "696924137970",
+      appId: "1:696924137970:web:da6546fcff1fefe4f1636b"
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    document.getElementById('logoutBtnSettings').onclick = function() {
+      signOut(auth).then(() => {
+        window.location.href = 'login.html';
+      }).catch((error) => {
+        alert('Logout failed: ' + error.message);
+      });
+    };
+  </script>
 </html>

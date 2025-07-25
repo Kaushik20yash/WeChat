@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="login.css" />
   </head>
   <body>
-    <div class="container" style="background-color: rgba(240, 233, 233, 0.093);backdrop-filter:blur(4px);border-radius:15px;border-color:cyan;box-shadow:0px 0px 5px rgba(255, 255, 255, 0.743);">
+    <div class="container" style="background-color: rgba(0, 0, 0, 0.093);backdrop-filter:blur(4px);border-radius:15px;border-color:cyan;box-shadow:0px 0px 5px rgba(255, 255, 255, 0.743);">
       <div class="profile-logo">
         <img src="WeChatLogo.png" alt="logo" />
       </div>
@@ -17,7 +17,7 @@
         <p>Connect beyond boundaries</p>
       </div>
       <div class="input-email">
-        <input type="email" required placeholder="Email address"/>
+        <input type="email" id="email" required placeholder="Email address"/>
       </div>
       <div class="input-email">
         <input type="text" required placeholder="Your Name" id="usernameInput" />
@@ -28,14 +28,12 @@
           required
           placeholder="Password"
           name="password"
-          id="pass"
+          id="password"
         />
       </div>
       <div>
-        <button class="btn" id="btnn" onclick="signbtn()">
-          <a href="javascript:delay('mainProfile.html')" style="text-decoration: none;color:rgb(153, 94, 248);">
+        <button class="btn" id="btnn">
           <span class="box" style="color: black;"> sign-in!</span>
-          </a>
         </button>
       </div>
       <br>
@@ -47,18 +45,6 @@
 <div class="lds-ellipsis"><div></div><div></div><div></div></div>
     </div>
     <br><br>
-    <script>
-      function signbtn(){
-        document.getElementsByClassName('lds-ellipsis')[0].style.display='inline-block';
-        // Store the entered name in localStorage
-        var name = document.getElementById('usernameInput').value;
-        localStorage.setItem('wechat_username', name);
-      }
-      function delay (URL) {
-    setTimeout( function() { window.location = URL }, 1500 );
-}
-    </script>
-    <script type="module" src="register.js"></script>
-</script>
+    <script type="module" src="login.js"></script>
   </body>
 </html>
