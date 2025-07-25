@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="common.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -30,17 +31,19 @@
             align-items: center;
             gap: 0.2em;
         }
-        #logo, #pro-icon {
-            font-size: 1.2em;
-            padding: 0.2em;
-            width: 1.6em;
+        #logo {
             border-radius: 50%; 
-            background-color: rgb(228, 57, 228); 
+            /* border: 1px solid black; */
+            width: 3.4em;
+            height: 3.4em;
             display: flex;
             justify-content: center;
-            height: 1.6em;
             align-items: center;
-            color: white;
+        }
+        #logo img {
+            object-fit: contain;
+            width: 3em;
+            height: 3em;
         }
         #top {
             display: flex;
@@ -77,6 +80,13 @@
         }
         .items.active {
             background:linear-gradient(to left,rgba(0, 0, 255, 0.574),grey);
+            margin-left: 2%;
+            margin-right: 2%;
+            border-radius: 0.5em;
+            color: white;
+        }
+        .items.active a{
+            color: white;
         }
         #dashboard {
             padding: 1em;
@@ -164,6 +174,7 @@
             right: 3em;
         }
         .stats-content {
+
             width: 88.6%;
             box-shadow: 0px 0px 4px lightgrey;
             border-radius: 1em;
@@ -171,8 +182,9 @@
             margin: 1em;
         }
         .stats {
+            width: 100%;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1em;
         }
         .box {
@@ -188,7 +200,7 @@
             color: green;
         }
         .container2 {
-            width: 60%;
+            width: 100%;
         }
         .sms {
             font-size: 2em;
@@ -211,7 +223,7 @@
     <div class="container">
       <nav>
         <div id="app">
-            <div id="logo">WC</div>
+            <div id="logo"><img src="./WeChatLogo.png"/></div>
             <h2>WeChat</h2>
         </div>
         <div>
@@ -225,8 +237,8 @@
         <div id="top">
             <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="window.location.href='./darkMode.html'"></i></div>
             <div id="profile">
-                <div id="pro-icon">YK</div>
-                <h2>Yash Kaushik</h2>
+                <i class="fa-solid fa-user"></i>
+                <a href="./Profile.html" style="color: black; text-decoration: none;"><span id="displayname"></span></a>
             </div>
         </div>
       </nav>
@@ -234,7 +246,7 @@
             <div id="sidebar">
                 <div class="items active">
                     <i class="fa-solid fa-house"></i>
-                    <label>Dashboard</label>
+                    <label><a href="mainProfile.html" style="text-decoration: none;">Dashboard</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-message"></i>
@@ -242,7 +254,7 @@
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-address-book"></i>
-                    <label>Contacts</label>
+                    <label><a href="contact.html" style="text-decoration: none;color:black">Contact</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-camera"></i>
@@ -250,7 +262,7 @@
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-gear"></i>
-                    <label><a href="Settings.html"style="text-decoration: none;color:black">Settings</a></label>
+                        <label><a href="Settings.html"style="text-decoration: none;color:black">Settings</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-user"></i>
@@ -260,7 +272,7 @@
             <div id="dashboard">
                 <div id="header">
                     <h1>Dashboard</h1>
-                    <p>Welcome back, John! You have 3 unread messages.</p>
+                    <p></p>
                 </div>
                 <div id="container1">
                     <div id="chats">
@@ -329,6 +341,10 @@
                             <h2>3</h2>
                             <p>Unread</p>
                         </div>
+                        <div class="box">
+                            <h2>7</h2>
+                            <p>Archived</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -342,4 +358,16 @@
         </div>
     </div>
   </body>
+  <script>
+    // Retrieve the username from localStorage and display it
+    document.addEventListener('DOMContentLoaded', function() {
+      var name = localStorage.getItem('wechat_username') || '';
+      document.getElementById('displayname').textContent =name;
+      // Also update the welcome message if present
+      var header = document.querySelector('#header p');
+      if(header && name) {
+        header.innerHTML = `Welcome back, ${name}! You have 3 unread messages.`;
+      }
+    });
+  </script>
 </html>

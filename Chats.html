@@ -11,6 +11,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script src="./common.js"></script>
     <style>
         * {
             margin: 0px;
@@ -30,7 +31,21 @@
             align-items: center;
             gap: 0.2em;
         }
-        #logo, #pro-icon {
+        #logo {
+            border-radius: 50%; 
+            /* border: 1px solid black; */
+            width: 3.4em;
+            height: 3.4em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #logo img {
+            object-fit: contain;
+            width: 3em;
+            height: 3em;
+        }
+        #pro-icon {
             font-size: 1.2em;
             padding: 0.2em;
             width: 1.6em;
@@ -68,16 +83,25 @@
         #sidebar {
             border-right: 0.5px solid lightgrey;
             width: 20%;
-            height: 100vh;
+            height: auto;
             padding-top: 1em;
+            padding-left: 0.3em;
+            padding-right: 0.3em;
         }
         .items {
             font-size: 1.5em;
             padding: 1em;
         }
+        .items label a {
+            color: black;
+        }
         .items.active {
             background:linear-gradient(to left,rgba(0, 0, 255, 0.574),grey);
-
+            border-radius: 0.5em;
+            color: white;
+        }
+        .items.active a{
+            color: white;
         }
         #dashboard {
             padding: 1em;
@@ -155,6 +179,43 @@
             margin-left: 1%;
             padding: 1.5em;
         }
+        .dynamic-messages {
+            width: 65%;
+            box-shadow: 0px 0px 4px lightgrey;
+            border-radius: 1em;
+            font-size: 1.2em;
+            display: none;
+            flex-direction: column;
+            box-sizing: border-box;
+            height: 90vh;
+        }
+        .no-border {
+            border: none;
+            background-color: rgb(245, 240, 240);
+            padding: 1em;
+            box-sizing: border-box;
+        }
+        #chatArea {
+            height: 83%;
+            box-sizing: border-box;
+            padding-top: 3em;
+            overflow-y: scroll;
+        }
+        #messaging {
+            background-color: rgb(245, 240, 240);
+            height: 7%;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 1em;
+            padding-bottom: 0;
+            padding-top: 0;
+            gap: 1em;
+            border-bottom-left-radius: 1em; 
+            border-bottom-right-radius: 1em;
+        }
         #container1 {
             display: flex;
             justify-content: space-around;
@@ -191,13 +252,14 @@
             align-self: flex-end;
             justify-self: flex-end;
         }
+        
     </style>
   </head>
   <body>
     <div class="container">
       <nav>
         <div id="app">
-            <div id="logo">WC</div>
+            <div id="logo"><img src="./WeChatLogo.png"/></div>
             <h2>WeChat</h2>
         </div>
         <div>
@@ -211,8 +273,8 @@
         <div id="top">
             <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="window.location.href='./darkMode.html'"></i></div>
             <div id="profile">
-                <div id="pro-icon">YK</div>
-                <h2>Yash Kaushik</h2>
+                <i class="fa-solid fa-user"></i>
+                <a href="./Profile.html" style="color: black; text-decoration: none;"><span id="displayname"></span></a>
             </div>
         </div>
       </nav>
@@ -220,27 +282,27 @@
             <div id="sidebar">
                 <div class="items">
                     <i class="fa-solid fa-house"></i>
-                    <label><a href="mainProfile.html" style="text-decoration: none;color:black">Dashboard</a></label>
+                    <label><a href="mainProfile.html" style="text-decoration: none;">Dashboard</a></label>
                 </div>
                 <div class="items active">
                     <i class="fa-solid fa-message"></i>
-                    <label><a href="Profile.html" style="text-decoration: none;color:black">Chats</a></label>
+                    <label><a href="Profile.html" style="text-decoration: none;">Chats</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-address-book"></i>
-                    <label>Contacts</label>
+                    <label><a href="./contact.html" style="text-decoration: none;">Contacts</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-camera"></i>
-                    <label><a href="Story.html" style="text-decoration: none;color:black">Stories</a></label>
+                    <label><a href="Story.html" style="text-decoration: none;">Stories</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-gear"></i>
-                    <label><a href="Settings.html" style="text-decoration: none;color:black">Settings</a></label>
+                    <label><a href="Settings.html" style="text-decoration: none;">Settings</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-user"></i>
-                    <label><a href="Profile.html" style="text-decoration: none;color:black">Profile</a></label>
+                    <label><a href="Profile.html" style="text-decoration: none;">Profile</a></label>
                 </div>
             </div>
             <div id="dashboard">
@@ -250,7 +312,7 @@
                 </div>
                 <div id="container1">
                     <div id="chats">
-                        <div class="messages">
+                        <div class="messages" type="button" style="cursor: pointer;">
                             <div id="pro-icon">AC</div>
                             <div class="message-text">
                                 <p>Alex Chen</p>
@@ -261,7 +323,7 @@
                                 <div class="num">2</div>
                             </div>
                         </div>
-                        <div class="messages">
+                        <div class="messages" type="button" style="cursor: pointer;">
                             <div id="pro-icon">SW</div>
                             <div class="message-text">
                                 <p>Sarah Wilsoon</p>
@@ -271,7 +333,7 @@
                                 <p>1:45 PM</p>
                             </div>
                         </div>
-                        <div class="messages">
+                        <div class="messages" type="button" style="cursor: pointer;">
                             <div id="pro-icon">MJ</div>
                             <div class="message-text">
                                 <p>Marcus Johnson</p>
@@ -288,6 +350,9 @@
                         <h2>Select a chat to start messaging</h2>
                         <p>Choose from your existing conversations or start a new one</p>
                     </div>
+                    <div class="dynamic-messages">
+
+                    </div>
             </div>
             <div class="sms" type="button">
                 <div class="send-message">
@@ -298,5 +363,6 @@
             </div>
         </div>
     </div>
+    <script src="chats.js"></script>
   </body>
 </html>

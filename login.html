@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="common.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -16,9 +17,12 @@
         <p>Connect beyond boundaries</p>
       </div>
       <div class="input-email">
-        <input type="email" required placeholder="Email address" />
+        <input type="email" required placeholder="Email address"/>
       </div>
       <div class="input-email">
+        <input type="text" required placeholder="Your Name" id="usernameInput" />
+      </div>
+      <div class="input-email" id="inputmail">
         <input
           type="password"
           required
@@ -34,14 +38,20 @@
           </a>
         </button>
       </div>
+      <br>
       <div class="footer">
         <p>Don't have an account? <a href="#">Sign up</a></p>
       </div>
+      <br>
 <div class="lds-ellipsis"><div></div><div></div><div></div></div>
     </div>
+    <br><br>
     <script>
       function signbtn(){
         document.getElementsByClassName('lds-ellipsis')[0].style.display='inline-block';
+        // Store the entered name in localStorage
+        var name = document.getElementById('usernameInput').value;
+        localStorage.setItem('wechat_username', name);
       }
       function delay (URL) {
     setTimeout( function() { window.location = URL }, 1500 );

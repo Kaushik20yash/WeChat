@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="common.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -30,17 +31,19 @@
             align-items: center;
             gap: 0.2em;
         }
-        #logo, #pro-icon {
-            font-size: 1.2em;
-            padding: 0.2em;
-            width: 1.6em;
+        #logo {
             border-radius: 50%; 
-            background-color: rgb(228, 57, 228); 
+            /* border: 1px solid black; */
+            width: 3.4em;
+            height: 3.4em;
             display: flex;
             justify-content: center;
-            height: 1.6em;
             align-items: center;
-            color: white;
+        }
+        #logo img {
+            object-fit: contain;
+            width: 3em;
+            height: 3em;
         }
         #top {
             display: flex;
@@ -77,7 +80,14 @@
         }
         .items.active {
             background:linear-gradient(to left,rgba(0, 0, 255, 0.574),grey);
+            margin-left: 2%;
+            margin-right: 2%;
+            border-radius: 0.5em;
+            color: white;
 
+        }
+        .items.active a{
+            color:white;
         }
         #dashboard {
             padding: 1em;
@@ -129,7 +139,7 @@
     <div class="container">
       <nav>
         <div id="app">
-            <div id="logo">WC</div>
+            <div id="logo"><img src="./WeChatLogo.png"/></div>
             <h2>WeChat</h2>
         </div>
         <div>
@@ -143,8 +153,8 @@
         <div id="top">
             <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="window.location.href='./darkMode.html'"></i></div>
             <div id="profile">
-                <div id="pro-icon">YK</div>
-                <h2>Yash Kaushik</h2>
+                <i class="fa-solid fa-user"></i>
+                <a href="./Profile.html" style="color: black; text-decoration: none;"><span id="displayname"></span></a>
             </div>
         </div>
       </nav>
@@ -156,11 +166,11 @@
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-message"></i>
-                    <label><a href="Profile.html" style="text-decoration: none;color:black">Chats</a></label>
+                    <label><a href="Chats.html" style="text-decoration: none;color:black">Chats</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-address-book"></i>
-                    <label>Contacts</label>
+                    <label><a href="contact.html" style="text-decoration: none;color:black">Contact</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-camera"></i>
@@ -172,7 +182,7 @@
                 </div>
                 <div class="items active">
                     <i class="fa-solid fa-user"></i>
-                    <label><a href="Profile.html" style="text-decoration: none;color:black">Profile</a></label>
+                    <label><a href="Profile.html" style="text-decoration: none;">Profile</a></label>
                 </div>
             </div>
             <div id="dashboard">
