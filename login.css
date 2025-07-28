@@ -160,12 +160,13 @@ body{
 }
 
 .btn {
-  color: black;
+  color: white;
   text-decoration: none;
   cursor: pointer;
   outline: none;
   border: none;
   background: transparent;
+    background-color: #404040;
   margin: 10px 0;
   border-radius: 5px;
   transition: all 0.3s ease;
