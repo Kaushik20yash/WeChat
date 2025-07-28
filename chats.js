@@ -56,7 +56,11 @@ messages.forEach((message) => {
       message.style.justifySelf = "flex-end";
       message.textContent = messageField.value;
       messageField.value = "";
-      document.querySelector("#chatArea").appendChild(message);
+      if(message.textContent == "") {
+        alert('empty message can\'t be sent.');
+      } else {
+        document.querySelector("#chatArea").appendChild(message);
+      }
       let compareValue = message.textContent.toLowerCase();
       if (compareValue == "hello") {
         let reply = document.createElement("div");
