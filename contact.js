@@ -122,7 +122,7 @@ function renderContacts() {
     proImg.style.justifyContent = 'center';
     proImg.style.alignItems = 'center';
     proImg.style.fontSize = '1.2em';
-    proImg.style.padding = 'o.2em';
+    proImg.style.padding = '0.2em';
     proImg.style.width = '1.6em';
     proImg.style.height = '1.6em';
     proImg.style.borderRadius = '50%';
@@ -141,7 +141,25 @@ function renderContacts() {
     contactItem.appendChild(proImg);
     contactItem.appendChild(proDetails);
     container2.appendChild(contactItem);
+  contactItem.addEventListener('click', function() {
+  let userImage = document.getElementById('user-image');
+  userImage.textContent = contact.initials;
+  let showProfile = document.getElementById('show-profile');
+  showProfile.style.display = 'flex';
+  let userName = document.getElementById('fullName');
+  userName.textContent = contact.name;
+  let userEmail = document.getElementById('userEmail');
+  userEmail.textContent = contact.email;
+  let closeProfile = document.getElementById('close-profile');
+  closeProfile.addEventListener('click', function() {
+    showProfile.style.display = 'none';
+  });
+  
+});
   });
 }
+
 // On page load, render contacts
 renderContacts();
+
+

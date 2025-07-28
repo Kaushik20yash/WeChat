@@ -84,9 +84,9 @@
         border-radius: 0.5em;
         color: white;
       }
-      .items.active a{
-            color: white;
-        }
+      .items.active a {
+        color: white;
+      }
       #contact {
         padding: 1em;
         width: 100%;
@@ -214,6 +214,8 @@
               border-radius: 1.2em;
               padding: 0.4em;
             "
+            onkeyup="searchclicked()"
+            oninput="searchclicked()"
           />
         </div>
         <div id="top">
@@ -225,9 +227,11 @@
             ></i>
           </div>
           <div id="profile">
-                <i class="fa-solid fa-user"></i>
-                <a href="./Profile.html" style="color: black; text-decoration: none;"><span id="displayname"></span></a>
-            </div>
+            <i class="fa-solid fa-user"></i>
+            <a href="./Profile.html" style="color: black; text-decoration: none"
+              ><span id="displayname"></span
+            ></a>
+          </div>
         </div>
       </nav>
       <div id="main-content">
@@ -253,9 +257,7 @@
           <div class="items active">
             <i class="fa-solid fa-address-book"></i>
             <label
-              ><a
-                href="contact.html"
-                style="text-decoration: none;"
+              ><a href="contact.html" style="text-decoration: none"
                 >Contact</a
               ></label
             >
@@ -295,19 +297,66 @@
             <button id="btn">+Add Contact</button>
           </div>
           <!-- Overlay for add contact form -->
-          <div id="overlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);backdrop-filter:blur(4px);z-index:1000;justify-content:center;align-items:center;">
-            <div id="formm" style="width: 50em; background:white; border-radius:1em; box-shadow:0 0 10px #888; padding:2em; display:flex; flex-direction:column; align-items:center;">
+          <div
+            id="overlay"
+            style="
+              display: none;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100vw;
+              height: 100vh;
+              background: rgba(0, 0, 0, 0.3);
+              backdrop-filter: blur(4px);
+              z-index: 1000;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <div
+              id="formm"
+              style="
+                width: 50em;
+                background: white;
+                border-radius: 1em;
+                box-shadow: 0 0 10px #888;
+                padding: 2em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              "
+            >
               <div>
-                <br>
+                <br />
                 <label>Name: </label>
-                <input type="text" id="name" placeholder="Name" style="width: 50ch;font-size: 20px;padding: 2%;border-radius: 5px;"/>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Name"
+                  style="
+                    width: 50ch;
+                    font-size: 20px;
+                    padding: 2%;
+                    border-radius: 5px;
+                  "
+                />
               </div>
               <div>
-                <br>
+                <br />
                 <label>Email: </label>
-                <input type="email" id="email" placeholder="Email" style="width: 50ch;font-size: 20px;padding: 2%;border-radius: 5px;" />
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Email"
+                  style="
+                    width: 50ch;
+                    font-size: 20px;
+                    padding: 2%;
+                    border-radius: 5px;
+                  "
+                />
               </div>
-              <button class="bookmarkBtn" id="button" style="margin: 2%;">
+              <button class="bookmarkBtn" id="button" style="margin: 2%">
                 <span class="IconContainer">
                   <svg viewBox="0 0 384 512" height="0.9em" class="icon">
                     <i class="far fa-save"></i>
@@ -315,7 +364,112 @@
                 </span>
                 <p class="text">Save</p>
               </button>
-              <button id="closeOverlay" style="margin-top:1em;border: none;background-color: transparent;">Cancel</button>
+              <button
+                id="closeOverlay"
+                style="
+                  margin-top: 1em;
+                  border: none;
+                  background-color: transparent;
+                "
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+          <div
+            id="show-profile"
+            style="
+              display: none;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100vw;
+              height: 100vh;
+              background: rgba(0, 0, 0, 0.3);
+              backdrop-filter: blur(4px);
+              z-index: 1000;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <div
+              id="user-profile"
+              style="
+                width: 65ch;
+                background: white;
+                border-radius: 1em;
+                box-shadow: 0 0 10px #888;
+                padding: 2em;
+                display: flex;
+                flex-direction: column;
+              "
+            >
+              <div
+                id="close-profile"
+                style="
+                  align-self: flex-end;
+                  background-color: red;
+                  font-size: 1.5em;
+                  cursor: pointer;
+                  color: white;
+                  padding: 0.2em;
+                  border-radius: 0.2em;
+                "
+              >
+                <i class="fa-solid fa-xmark"></i>
+              </div>
+              <div id="user-image"
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  font-size: 2.8em;
+                  width: 2.6em;
+                  height: 2.6em;
+                  border-radius: 50%;
+                  background-color: rgb(228, 57, 228);
+                  color: white;
+                  align-self: center;
+                  margin-bottom: 1em;
+                "
+              ></div>
+
+              <label>Full Name</label>
+              <div
+                id="fullName"
+                style="
+                  width: 50ch;
+                  font-size: 20px;
+                  padding: 2%;
+                  border-radius: 5px;
+                  border: 1px solid lightgrey;
+                "
+              ></div>
+              <br />
+              <label>Email</label>
+              <div
+                id="userEmail"
+                style="
+                  width: 50ch;
+                  font-size: 20px;
+                  padding: 2%;
+                  border-radius: 5px;
+                  border: 1px solid lightgrey;
+                "
+              ></div>
+              <br />
+              <label>Status Message</label>
+              <div
+                style="
+                  width: 50ch;
+                  font-size: 20px;
+                  padding: 2%;
+                  border-radius: 5px;
+                  border: 1px solid lightgrey;
+                "
+              >
+                Hi there! I am using WeChat.
+              </div>
             </div>
           </div>
           <div class="container2"></div>
