@@ -56,7 +56,7 @@ messages.forEach((message) => {
       message.style.justifySelf = "flex-end";
       message.textContent = messageField.value;
       messageField.value = "";
-      if(message.textContent == "") {
+      if(message.textContent === "") {
         alert('empty message can\'t be sent.');
       } else {
         document.querySelector("#chatArea").appendChild(message);
