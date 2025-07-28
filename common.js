@@ -509,7 +509,7 @@ function searchclicked() {
     case 'contact.html':
       searchContacts(searchTerm);
       break;
-    case 'index.html':
+    case 'index1.html':
     case 'Profile.html':
     case 'Settings.html':
     case 'Story.html':
