@@ -37,7 +37,7 @@ document.getElementById('btnn1').addEventListener("click", function (event) {
         .then((userCredential) => {
             alert("Account created successfully!");
             console.log("User:", userCredential.user);
-            window.location.href = "mainProfile.html";  // Redirect to dashboard
+            window.location.href = "index.html";  // Redirect to dashboard
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -66,7 +66,7 @@ document.getElementById('btnn').addEventListener("click", function (event) {
         .then((userCredential) => {
             alert("Login successful!");
             console.log("Logged in:", userCredential.user);
-            window.location.href = "mainProfile.html";  // Redirect to dashboard
+            window.location.href = "index.html";  // Redirect to dashboard
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -79,7 +79,7 @@ document.getElementById('btnn').addEventListener("click", function (event) {
 onAuthStateChanged(auth, (user) => {
     if (user) {
         console.log("User is logged in:", user);
-        window.location.href = "mainProfile.html";  // Redirect if already logged in
+        window.location.href = "index.html";  // Redirect if already logged in
     }
 });
 

@@ -32,7 +32,7 @@ document.getElementById('btnn').addEventListener('click', function(event) {
     .then((userCredential) => {
       alert('Login successful!');
       console.log('Logged in:', userCredential.user);
-      window.location.href = 'mainProfile.html';
+      window.location.href = 'index.html';
     })
     .catch((error) => {
       console.error('Error:', error);

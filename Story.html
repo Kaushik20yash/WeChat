@@ -103,48 +103,101 @@
             justify-content: space-between;
         }
 
-.pin_container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-auto-rows: calc(10px * 1px);
-  grid-gap: 10px;
-}
+        .pin_container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-auto-rows: calc(10px * 1px);
+            grid-gap: 10px;
+            padding: 20px;
+        }
 
-.card {
-    border:solid;
-  border-radius: 16px;
-}
-.card:hover{
-    box-shadow:0px 0px 10px #7272e5;
-    transform: scale(1.08);
-    transition:0.2s;
-}
+        .card {
+            border: solid 2px #e0e0e0;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover{
+            box-shadow: 0px 0px 20px #7272e5;
+            transform: scale(1.05);
+            border-color: #7272e5;
+        }
 
-.card_small {
-    background: url(https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+        .card_small {
+            grid-row-end: span 26;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
 
-    
-  grid-row-end: span 26;
-}
+        .card_medium {
+            grid-row-end: span 33;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
 
-.card_medium {
-    background:url(https://sb.kaleidousercontent.com/67418/1920x1281/0e9f02a048/christian-buehner-ditylc26zvi-unsplash.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  grid-row-end: span 33;
-}
-
-.card_large {
-    background:url(https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-sulimansallehi-1704488.jpg&fm=jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  grid-row-end: span 45;
-}
+        .card_large {
+            grid-row-end: span 45;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        /* Loading indicator */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #7272e5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Card overlay for better text visibility */
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card:hover .card-overlay {
+            opacity: 1;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .card-subtitle {
+            font-size: 14px;
+            opacity: 0.8;
+        }
        
         .sms {
             font-size: 2em;
@@ -176,10 +229,12 @@
             id="search"
             placeholder="&#xf002; Search Messages, Contacts..."
             style="font-family:Arial,FontAwesome; width: 40ch; font-size: 1em; border-radius: 1.2em; padding: 0.4em;"
+            onkeyup="searchclicked()"
+            oninput="searchclicked()"
           />
         </div>
         <div id="top">
-            <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="window.location.href='./darkMode.html'"></i></div>
+            <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="toggleDarkMode()"></i></div>
             <div id="profile">
                 <i class="fa-solid fa-user"></i>
                 <a href="./Profile.html" style="color: black; text-decoration: none;"><span id="displayname"></span></a>
@@ -190,7 +245,7 @@
             <div id="sidebar">
                 <div class="items">
                     <i class="fa-solid fa-house"></i>
-                    <label><a href="mainProfile.html" style="text-decoration: none;color:black">Dashboard</a></label>
+                    <label><a href="index.html" style="text-decoration: none;color:black">Dashboard</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-message"></i>
@@ -216,22 +271,16 @@
             <div id="dashboard">
                 <div id="header">
                     <h1>Stories</h1>
-                    
                 </div>
                 <div id="container1">
-                    <div class="pin_container">
-  <div class="card card_small" ></div>
-  <div class="card card_medium"></div>
-  <div class="card card_large"></div>
-  <div class="card card_small"></div>
-  <div class="card card_large"></div>
-  <div class="card card_medium"></div>
-  <div class="card card_medium"></div>
-  <div class="card card_small"></div>
-  <div class="card card_large"></div>
-  <div class="card card_large"></div>
-  <div class="card card_small"></div>
-</div>
+                    <div class="pin_container" id="stories-container">
+                        <!-- Stories will be dynamically loaded here -->
+                    </div>
+                    <div class="loading" id="loading" style="display: none;">
+                        <div class="loading-spinner"></div>
+                        Loading more stories...
+                    </div>
+                </div>
             <div class="sms" type="button">
                 <div class="send-message">
                     <a href="Chats.html" style="text-decoration: none;color:white">
@@ -241,5 +290,201 @@
             </div>
         </div>
     </div>
+    
+    <script>
+        // Stories Management
+        let currentPage = 0;
+        let isLoading = false;
+        let hasMoreStories = true;
+        
+        // Story templates with different sizes
+        const storyTemplates = [
+            { class: 'card_small', span: 26, width: 200, height: 260 },
+            { class: 'card_medium', span: 33, width: 200, height: 330 },
+            { class: 'card_large', span: 45, width: 200, height: 450 }
+        ];
+        
+        // Story titles for overlay
+        const storyTitles = [
+            "Mountain Adventure",
+            "City Lights",
+            "Ocean Waves",
+            "Forest Path",
+            "Desert Sunset",
+            "Urban Life",
+            "Nature Beauty",
+            "Architecture",
+            "Travel Memories",
+            "Art Gallery",
+            "Street Photography",
+            "Wildlife",
+            "Seasons",
+            "Cultural Heritage",
+            "Modern Design"
+        ];
+        
+        function generateRandomId() {
+            return Math.floor(Math.random() * 10000);
+        }
+        
+        function getRandomStoryTemplate() {
+            return storyTemplates[Math.floor(Math.random() * storyTemplates.length)];
+        }
+        
+        function getRandomStoryTitle() {
+            return storyTitles[Math.floor(Math.random() * storyTitles.length)];
+        }
+        
+        function createStoryCard() {
+            const template = getRandomStoryTemplate();
+            const storyId = generateRandomId();
+            const imageId = Math.floor(Math.random() * 1000); // Random image ID for Picsum
+            const title = getRandomStoryTitle();
+            
+            const card = document.createElement('div');
+            card.className = `card ${template.class}`;
+            card.style.backgroundImage = `url(https://picsum.photos/${template.width}/${template.height}?random=${imageId})`;
+            card.setAttribute('data-story-id', storyId);
+            
+            // Add overlay with title
+            const overlay = document.createElement('div');
+            overlay.className = 'card-overlay';
+            overlay.innerHTML = `
+                <div class="card-title">${title}</div>
+                <div class="card-subtitle">Story #${storyId}</div>
+            `;
+            
+            card.appendChild(overlay);
+            
+            // Add click event
+            card.addEventListener('click', function() {
+                openStory(storyId, title, card.style.backgroundImage);
+            });
+            
+            return card;
+        }
+        
+        function openStory(storyId, title, backgroundImage) {
+            // Create a modal or full-screen view for the story
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.9);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                cursor: pointer;
+            `;
+            
+            const storyContent = document.createElement('div');
+            storyContent.style.cssText = `
+                background-image: ${backgroundImage};
+                background-size: cover;
+                background-position: center;
+                width: 80%;
+                height: 80%;
+                border-radius: 20px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            `;
+            
+            const storyInfo = document.createElement('div');
+            storyInfo.style.cssText = `
+                background: linear-gradient(transparent, rgba(0,0,0,0.8));
+                color: white;
+                padding: 40px;
+                border-radius: 0 0 20px 20px;
+            `;
+            storyInfo.innerHTML = `
+                <h2 style="margin: 0 0 10px 0; font-size: 32px;">${title}</h2>
+                <p style="margin: 0; font-size: 18px; opacity: 0.8;">Story #${storyId}</p>
+            `;
+            
+            storyContent.appendChild(storyInfo);
+            modal.appendChild(storyContent);
+            document.body.appendChild(modal);
+            
+            // Close modal on click
+            modal.addEventListener('click', function() {
+                document.body.removeChild(modal);
+            });
+        }
+        
+        function loadMoreStories() {
+            if (isLoading || !hasMoreStories) return;
+            
+            isLoading = true;
+            const loadingElement = document.getElementById('loading');
+            loadingElement.style.display = 'block';
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                const container = document.getElementById('stories-container');
+                const storiesToAdd = 6; // Add 6 stories at a time
+                
+                for (let i = 0; i < storiesToAdd; i++) {
+                    const storyCard = createStoryCard();
+                    container.appendChild(storyCard);
+                }
+                
+                currentPage++;
+                isLoading = false;
+                loadingElement.style.display = 'none';
+                
+                // For demo purposes, limit to 10 pages
+                if (currentPage >= 10) {
+                    hasMoreStories = false;
+                }
+            }, 1000);
+        }
+        
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Load more when user is near bottom
+            if (scrollTop + windowHeight >= documentHeight - 100) {
+                loadMoreStories();
+            }
+        }
+        
+        // Initialize stories
+        function initializeStories() {
+            loadMoreStories(); // Load initial stories
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+            
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // Close any open modals
+                    const modals = document.querySelectorAll('[style*="position: fixed"]');
+                    modals.forEach(modal => {
+                        if (modal.style.background === 'rgba(0, 0, 0, 0.9)') {
+                            document.body.removeChild(modal);
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Load username from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            var name = localStorage.getItem('wechat_username') || '';
+            document.getElementById('displayname').textContent = name;
+            
+            // Initialize stories
+            initializeStories();
+        });
+    </script>
   </body>
 </html>

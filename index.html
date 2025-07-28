@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="common.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -11,7 +12,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script src="./common.js"></script>
     <style>
         * {
             margin: 0px;
@@ -45,18 +45,6 @@
             width: 3em;
             height: 3em;
         }
-        #pro-icon {
-            font-size: 1.2em;
-            padding: 0.2em;
-            width: 1.6em;
-            border-radius: 50%; 
-            background-color: rgb(228, 57, 228); 
-            display: flex;
-            justify-content: center;
-            height: 1.6em;
-            align-items: center;
-            color: white;
-        }
         #top {
             display: flex;
             gap: 1.5em;
@@ -83,20 +71,17 @@
         #sidebar {
             border-right: 0.5px solid lightgrey;
             width: 20%;
-            height: auto;
+            height: 100vh;
             padding-top: 1em;
-            padding-left: 0.3em;
-            padding-right: 0.3em;
         }
         .items {
             font-size: 1.5em;
             padding: 1em;
         }
-        .items label a {
-            color: black;
-        }
         .items.active {
             background:linear-gradient(to left,rgba(0, 0, 255, 0.574),grey);
+            margin-left: 2%;
+            margin-right: 2%;
             border-radius: 0.5em;
             color: white;
         }
@@ -116,15 +101,11 @@
             justify-content: space-between;
         }
         #chats {
-            padding: 1em;
-            width: 35%;
-            height: 800px;
+            padding: 1.5em;
+            width: 60%;
             box-shadow: 0px 0px 4px lightgrey;
             border-radius: 1em;
-            margin: 0em;
-        }
-        .online {
-            width: 65%;
+            margin: 1em;
         }
         .messages {
             padding: 0.5em;
@@ -155,72 +136,55 @@
             color: rgb(99, 203, 248);
             border: 0.5px solid rgb(99, 203, 248);
         }
-        .online i {
-            font-size: 50px;
+        #online-icon {
+            font-size: 1.2em;
             padding: 0.2em;
-            height: 1.4em;
-            width: 1.4em;
+            width: 1.6em;
             border-radius: 50%; 
             background-color: rgb(57, 165, 228); 
             display: flex;
-            border-radius:50%;
             justify-content: center;
+            height: 1.6em;
             align-items: center;
             color: white;
         }
         .online {
             box-shadow: 0px 0px 4px lightgrey;
+            width: 40%;
             border-radius: 1em;
-            font-size: 1.2em;
-            display: flex;
-            justify-content: center;
-            align-items:center;
-            flex-direction: column;
-            margin-left: 1%;
+            margin: 1em;
             padding: 1.5em;
-        }
-        .dynamic-messages {
-            width: 65%;
-            box-shadow: 0px 0px 4px lightgrey;
-            border-radius: 1em;
-            font-size: 1.2em;
-            display: none;
-            flex-direction: column;
-            box-sizing: border-box;
-            height: 90vh;
-        }
-        .no-border {
-            border: none;
-            background-color: rgb(245, 240, 240);
-            padding: 1em;
-            box-sizing: border-box;
-        }
-        #chatArea {
-            height: 83%;
-            box-sizing: border-box;
-            padding-top: 3em;
-            overflow-y: scroll;
-        }
-        #messaging {
-            background-color: rgb(245, 240, 240);
-            height: 7%;
-            width: 100%;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 1em;
-            padding-bottom: 0;
-            padding-top: 0;
-            gap: 1em;
-            border-bottom-left-radius: 1em; 
-            border-bottom-right-radius: 1em;
         }
         #container1 {
             display: flex;
-            justify-content: space-around;
-            width: 95%;
-            padding: 2em;
+        }
+        .user-online {
+            display: flex;
+            gap: 1em;
+            margin: 1em;
+            align-items: center;
+            position: relative;
+        }
+        .green-dot {
+            width: 0.5em;
+            height: 0.5em;
+            border-radius: 50%;
+            background-color: green;
+            position: absolute;
+            right: 3em;
+        }
+        .stats-content {
+
+            width: 88.6%;
+            box-shadow: 0px 0px 4px lightgrey;
+            border-radius: 1em;
+            padding: 1.5em;
+            margin: 1em;
+        }
+        .stats {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1em;
         }
         .box {
@@ -236,7 +200,7 @@
             color: green;
         }
         .container2 {
-            width: 60%;
+            width: 100%;
         }
         .sms {
             font-size: 2em;
@@ -251,8 +215,8 @@
             border-radius: 50%;
             align-self: flex-end;
             justify-self: flex-end;
+            margin: 2em;
         }
-        
     </style>
   </head>
   <body>
@@ -282,39 +246,40 @@
       </nav>
         <div id="main-content">
             <div id="sidebar">
-                <div class="items">
+                <div class="items active">
                     <i class="fa-solid fa-house"></i>
                     <label><a href="index.html" style="text-decoration: none;">Dashboard</a></label>
                 </div>
-                <div class="items active">
+                <div class="items">
                     <i class="fa-solid fa-message"></i>
-                    <label><a href="Profile.html" style="text-decoration: none;">Chats</a></label>
+                    <label><a href="Chats.html" style="text-decoration: none;color:black">Chats</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-address-book"></i>
-                    <label><a href="./contact.html" style="text-decoration: none;">Contacts</a></label>
+                    <label><a href="contact.html" style="text-decoration: none;color:black">Contact</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-camera"></i>
-                    <label><a href="Story.html" style="text-decoration: none;">Stories</a></label>
+                    <label><a href="Story.html" style="text-decoration: none;color:black">Stories</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-gear"></i>
-                    <label><a href="Settings.html" style="text-decoration: none;">Settings</a></label>
+                        <label><a href="Settings.html"style="text-decoration: none;color:black">Settings</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-user"></i>
-                    <label><a href="Profile.html" style="text-decoration: none;">Profile</a></label>
+                    <label><a href="Profile.html"style="text-decoration: none;color:black">Profile</a></label>
                 </div>
             </div>
             <div id="dashboard">
                 <div id="header">
-                    <h1>Chats</h1>
-                    
+                    <h1>Dashboard</h1>
+                    <p></p>
                 </div>
                 <div id="container1">
                     <div id="chats">
-                        <div class="messages" type="button" style="cursor: pointer;">
+                        <h3>Recent Chats</h3>
+                        <div class="messages">
                             <div id="pro-icon">AC</div>
                             <div class="message-text">
                                 <p>Alex Chen</p>
@@ -325,21 +290,21 @@
                                 <div class="num">2</div>
                             </div>
                         </div>
-                        <div class="messages" type="button" style="cursor: pointer;">
+                        <div class="messages">
                             <div id="pro-icon">SW</div>
                             <div class="message-text">
                                 <p>Sarah Wilsoon</p>
-                                <p>Thanks for sending those files!</p>
+                                <p>Hey! Are we still on for the meeting tomorrow?</p>
                             </div>
                             <div class="time">
                                 <p>1:45 PM</p>
                             </div>
                         </div>
-                        <div class="messages" type="button" style="cursor: pointer;">
+                        <div class="messages">
                             <div id="pro-icon">MJ</div>
                             <div class="message-text">
                                 <p>Marcus Johnson</p>
-                                <p>The project looks great so far</p>
+                                <p>Hey! Are we still on for the meeting tomorrow?</p>
                             </div>
                             <div class="time">
                                 <p>12:20 PM</p>
@@ -348,13 +313,42 @@
                         </div>
                     </div>
                     <div class="online">
-                        <i class="fa fa-commenting" aria-hidden="true"></i>
-                        <h2>Select a chat to start messaging</h2>
-                        <p>Choose from your existing conversations or start a new one</p>
+                        <h3>Online Users</h3>
+                        <div class="user-online">
+                            <div id="online-icon">AC</div>
+                            <p>Alex Chen</p>
+                            <div class="green-dot"></div>
+                        </div>
+                        <div class="user-online">
+                            <div id="online-icon">MJ</div>
+                            <p>Marcus Johnson</p>
+                            <div class="green-dot"></div>
+                        </div>
+                        <div class="user-online">
+                            <div id="online-icon">RM</div>
+                            <p>Ryan Martinez</p>
+                            <div class="green-dot"></div>
+                        </div>
                     </div>
-                    <div class="dynamic-messages">
-
+            </div>
+            <div class="container2">
+                <div class="stats-content">
+                    <h3>Quick Stats</h3>
+                    <div class="stats">
+                        <div class="box">
+                            <h2>15</h2>
+                            <p>Total Chats</p>
+                        </div>
+                        <div class="box">
+                            <h2>3</h2>
+                            <p>Unread</p>
+                        </div>
+                        <div class="box">
+                            <h2>7</h2>
+                            <p>Archived</p>
+                        </div>
                     </div>
+                </div>
             </div>
             <div class="sms" type="button">
                 <div class="send-message">
@@ -365,6 +359,17 @@
             </div>
         </div>
     </div>
-    <script src="chats.js"></script>
   </body>
+  <script>
+    // Retrieve the username from localStorage and display it
+    document.addEventListener('DOMContentLoaded', function() {
+      var name = localStorage.getItem('wechat_username') || '';
+      document.getElementById('displayname').textContent =name;
+      // Also update the welcome message if present
+      var header = document.querySelector('#header p');
+      if(header && name) {
+        header.innerHTML = `Welcome back, ${name}! You have 3 unread messages.`;
+      }
+    });
+  </script>
 </html>

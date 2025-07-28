@@ -141,10 +141,12 @@
             id="search"
             placeholder="&#xf002; Search Messages, Contacts..."
             style="font-family:Arial,FontAwesome; width: 40ch; font-size: 1em; border-radius: 1.2em; padding: 0.4em;"
+            onkeyup="searchclicked()"
+            oninput="searchclicked()"
           />
         </div>
         <div id="top">
-            <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="window.location.href='./darkMode.html'"></i></div>
+            <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="toggleDarkMode()"></i></div>
             <div id="profile">
                 <i class="fa-solid fa-user"></i>
                 <a href="./Profile.html" style="color: black; text-decoration: none;"><span id="displayname"></span></a>
@@ -155,7 +157,7 @@
             <div id="sidebar">
                 <div class="items">
                     <i class="fa-solid fa-house"></i>
-                    <label><a href="mainProfile.html" style="text-decoration: none;color:black">Dashboard</a></label>
+                    <label><a href="index.html" style="text-decoration: none;color:black">Dashboard</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-message"></i>

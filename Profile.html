@@ -133,6 +133,97 @@
             margin-top: 2%;
             margin-bottom: 2%;
         }
+        
+        /* Profile Picture Styles */
+        .profile-picture-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .profile-picture {
+            border-radius: 50%;
+            height: 5.5em;
+            width: 5.5em;
+            object-fit: cover;
+            border: 3px solid #e339e4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-picture:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .change-photo-btn {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            padding: 2%;
+            color: white;
+            background-color: #e339e4;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .change-photo-btn:hover {
+            background-color: #d129d1;
+            transform: translateY(-2px);
+        }
+        
+        .save-btn {
+            padding: 3%;
+            width: 10em;
+            margin: 2%;
+            border-radius: 0.3em;
+            background: linear-gradient(to right,#e339e4,#e339e4,white);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .cancel-btn {
+            padding: 3%;
+            margin: 2%;
+            border-radius: 0.3em;
+            background: linear-gradient(to right,white,rgb(251, 235, 235));
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cancel-btn:hover {
+            background: linear-gradient(to right,white,rgb(241, 225, 225));
+        }
+        
+        /* Hidden file input */
+        #profile-picture-input {
+            display: none;
+        }
+        
+        /* Success notification */
+        .success-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            z-index: 10000;
+            font-size: 14px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+        }
     </style>
   </head>
   <body>
@@ -148,10 +239,12 @@
             id="search"
             placeholder="&#xf002; Search Messages, Contacts..."
             style="font-family:Arial,FontAwesome; width: 40ch; font-size: 1em; border-radius: 1.2em; padding: 0.4em;"
+            onkeyup="searchclicked()"
+            oninput="searchclicked()"
           />
         </div>
         <div id="top">
-            <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="window.location.href='./darkMode.html'"></i></div>
+            <div type="button" id="theme"><i class="fa-solid fa-moon" style="font-size: 1.5em; color: yellow; cursor: pointer;" onclick="toggleDarkMode()"></i></div>
             <div id="profile">
                 <i class="fa-solid fa-user"></i>
                 <a href="./Profile.html" style="color: black; text-decoration: none;"><span id="displayname"></span></a>
@@ -162,7 +255,7 @@
             <div id="sidebar">
                 <div class="items">
                     <i class="fa-solid fa-house"></i>
-                    <label><a href="mainProfile.html" style="text-decoration: none;color:black">Dashboard</a></label>
+                    <label><a href="index.html" style="text-decoration: none;color:black">Dashboard</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-message"></i>
@@ -191,27 +284,27 @@
                 </div>
                 <div class="containerp">
                     <div style="display: flex;justify-content: center;align-items:center;flex-direction: column;">
-                    <div>
-                        <img src="https://assets.entrepreneur.com/content/3x2/2000/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg?format=pjeg&auto=webp&crop=1:1" alt="profile logo" style="border-radius: 50%;height: 5.5em;width: 5.5em;">
-
+                    <div class="profile-picture-container">
+                        <img id="profile-picture" src="https://assets.entrepreneur.com/content/3x2/2000/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg?format=pjeg&auto=webp&crop=1:1" alt="profile logo" class="profile-picture">
+                        <input type="file" id="profile-picture-input" accept="image/*">
                     </div>
-                    <button style="display: flex;justify-content: center;text-align: center;padding: 2%;color:white;background-color:#e339e4;border-radius:10px">Change Photo</button>
+                    <button class="change-photo-btn" onclick="document.getElementById('profile-picture-input').click()">Change Photo</button>
                     </div>
                     <p>Full Name</p>
-                    <input type="text"placeholder="john" class="inputt">
+                    <input type="text" id="full-name" placeholder="john" class="inputt">
                     <br>
                     <p>Email</p>
-                    <input type="email"placeholder="john@examplemail.com"class="inputt">
+                    <input type="email" id="email" placeholder="john@examplemail.com" class="inputt">
                     <br>
                     <p>Status Message</p>
-                    <input type="text"placeholder="avaiable"class="inputt"max="20">
+                    <input type="text" id="status-message" placeholder="available" class="inputt" maxlength="50">
                     <br>
                     <p>Date Of Birth</p>
-                    <input type="date" max="2020-07-01"class="inputt">
+                    <input type="date" id="date-of-birth" max="2020-07-01" class="inputt">
                     <br>
                     <div style="display: flex;">
-                        <button type="submit" style="padding: 3%;width: 10em;margin: 2%;border-radius:0.3em; background:linear-gradient(to right,#e339e4,#e339e4,white)">Save Changes</button>
-                        <button type="submit" style="padding: 3%;margin: 2%; border-radius:0.3em;background:linear-gradient(to right,white,rgb(251, 235, 235))">Cancel</button>
+                        <button class="save-btn" onclick="saveProfileChanges()">Save Changes</button>
+                        <button class="cancel-btn" onclick="resetProfileForm()">Cancel</button>
                     </div>
 
 
@@ -225,13 +318,122 @@
                 </div>
             </div>
             </div>
-            <div style="display: flex; justify-content: center; margin-top: 2em;">
-              <button id="logoutBtn" style="padding: 3%; width: 3.5em; height: 3.5em; margin: 2%; border-radius:0.3em; background:linear-gradient(to right,#e339e4,#e339e4,white); display: flex; align-items: center; justify-content: center; border: none; cursor: pointer;">
-                <i class="fa-solid fa-power-off" style="font-size: 1.5em; color: white;"></i>
-              </button>
-            </div>
         </div>
     </div>
+    
+    <!-- Success Notification -->
+    <div id="success-notification" class="success-notification"></div>
+    
+    <script>
+        // Profile Management Functions
+        function loadProfileData() {
+            const profileData = JSON.parse(sessionStorage.getItem('wechat_profile_data') || '{}');
+            
+            // Load profile picture
+            if (profileData.profilePicture) {
+                document.getElementById('profile-picture').src = profileData.profilePicture;
+            }
+            
+            // Load form fields
+            if (profileData.fullName) {
+                document.getElementById('full-name').value = profileData.fullName;
+            }
+            if (profileData.email) {
+                document.getElementById('email').value = profileData.email;
+            }
+            if (profileData.statusMessage) {
+                document.getElementById('status-message').value = profileData.statusMessage;
+            }
+            if (profileData.dateOfBirth) {
+                document.getElementById('date-of-birth').value = profileData.dateOfBirth;
+            }
+        }
+        
+        function saveProfileChanges() {
+            const profileData = {
+                profilePicture: document.getElementById('profile-picture').src,
+                fullName: document.getElementById('full-name').value,
+                email: document.getElementById('email').value,
+                statusMessage: document.getElementById('status-message').value,
+                dateOfBirth: document.getElementById('date-of-birth').value
+            };
+            
+            // Save to sessionStorage
+            sessionStorage.setItem('wechat_profile_data', JSON.stringify(profileData));
+            
+            // Show success notification
+            showSuccessNotification('Profile updated successfully!');
+        }
+        
+        function resetProfileForm() {
+            // Reset to default values
+            document.getElementById('profile-picture').src = 'https://assets.entrepreneur.com/content/3x2/2000/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg?format=pjeg&auto=webp&crop=1:1';
+            document.getElementById('full-name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('status-message').value = '';
+            document.getElementById('date-of-birth').value = '';
+            
+            // Clear sessionStorage
+            sessionStorage.removeItem('wechat_profile_data');
+            
+            showSuccessNotification('Profile reset to default!');
+        }
+        
+        function showSuccessNotification(message) {
+            const notification = document.getElementById('success-notification');
+            notification.textContent = message;
+            
+            // Show notification
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Hide notification after 3 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+            }, 3000);
+        }
+        
+        // Profile picture upload functionality
+        document.getElementById('profile-picture-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Check if file is an image
+                if (!file.type.startsWith('image/')) {
+                    alert('Please select an image file.');
+                    return;
+                }
+                
+                // Check file size (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Image size should be less than 5MB.');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-picture').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Make profile picture clickable for upload
+        document.getElementById('profile-picture').addEventListener('click', function() {
+            document.getElementById('profile-picture-input').click();
+        });
+        
+        // Load profile data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProfileData();
+            
+            // Load username from localStorage
+            var name = localStorage.getItem('wechat_username') || '';
+            document.getElementById('displayname').textContent = name;
+        });
+    </script>
   </body>
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js';
