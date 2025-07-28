@@ -185,7 +185,9 @@ function applyDarkModeStyles() {
     .dark-mode #header {
       color: #ffffff !important;
     }
-    
+    .dark-mode #displayname {
+      color: #ffffff !important;
+    }
     .dark-mode .items {
       color: #ffffff !important;
     }
