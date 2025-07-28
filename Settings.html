@@ -157,7 +157,7 @@
             <div id="sidebar">
                 <div class="items">
                     <i class="fa-solid fa-house"></i>
-                    <label><a href="index.html" style="text-decoration: none;color:black">Dashboard</a></label>
+                    <label><a href="index1.html" style="text-decoration: none;color:black">Dashboard</a></label>
                 </div>
                 <div class="items">
                     <i class="fa-solid fa-message"></i>
@@ -277,7 +277,7 @@
     const auth = getAuth(app);
     document.getElementById('logoutBtnSettings').onclick = function() {
       signOut(auth).then(() => {
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
       }).catch((error) => {
         alert('Logout failed: ' + error.message);
       });
