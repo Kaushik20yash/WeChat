@@ -1,4 +1,4 @@
-# WeChat Clone
+# WeChat 
 
 A modern WeChat clone with comprehensive search functionality and dark mode support.
 
